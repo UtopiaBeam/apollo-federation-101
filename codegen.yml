@@ -1,0 +1,9 @@
+generates:
+  .codegen/types.ts:
+    schema: 'services/**/schema.ts'
+    plugins:
+      - typescript
+      - typescript-resolvers
+    config:
+      federation: true
+      useIndexSignature: true

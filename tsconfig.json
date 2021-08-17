@@ -1,0 +1,31 @@
+{
+  "include": ["./**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
+    "target": "es6",
+    "module": "commonjs",
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "es2017",
+      "dom",
+      "es2015",
+      "esnext.asynciterable",
+      "es2020"
+    ],
+    "typeRoots": ["./node_modules/@types"],
+    "strict": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": false
+  },
+  "exclude": [
+    "node_modules",
+  ]
+}
