@@ -8,11 +8,13 @@
   "license": "MIT",
   "dependencies": {
     "@apollo/federation": "^0.29.0",
+    "@apollo/gateway": "^0.38.0",
     "@prisma/client": "^2.29.1",
     "apollo-server": "^3.1.2",
     "graphql": "^15.5.1"
   },
   "devDependencies": {
+    "@apollo/rover": "^0.1.10",
     "@graphql-codegen/cli": "^2.0.1",
     "@graphql-codegen/typescript": "^2.0.0",
     "@graphql-codegen/typescript-resolvers": "^2.0.0",
@@ -24,9 +26,12 @@
   },
   "scripts": {
     "start": "ts-node index.ts",
+    "gateway:start": "ts-node gateway/index.ts",
+    "pregateway:start": "yarn supergraph",
     "db:migrate": "dotenv -- yarn prisma migrate dev --preview-feature",
     "codegen:graphql": "graphql-codegen",
     "codegen:prisma": "prisma generate",
-    "codegen": "yarn codegen:graphql && yarn codegen:prisma"
+    "codegen": "yarn codegen:graphql && yarn codegen:prisma",
+    "supergraph": "rover supergraph compose --config ./supergraph-config.yml > supergraph.graphql"
   }
 }
