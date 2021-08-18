@@ -1,12 +1,15 @@
 import { Resolvers } from 'generated/types'
+import { MovieRepository } from './repositories/movie.repo'
+
+const movieRepo = new MovieRepository()
 
 export const resolvers: Resolvers = {
   Query: {
     movies: (_parent, _args, _ctx) => {
-      return []
+      return movieRepo.findMany()
     },
     movie: (_parent, { id }, _ctx) => {
-      return null
+      return movieRepo.findById(id)
     },
   },
 }
