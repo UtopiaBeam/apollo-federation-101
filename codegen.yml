@@ -1,5 +1,5 @@
 generates:
-  .codegen/types.ts:
+  generated/types.ts:
     schema: 'services/**/schema.ts'
     plugins:
       - typescript
