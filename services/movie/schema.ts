@@ -24,6 +24,5 @@ export const typeDefs = gql`
 
   type Mutation {
     createMovie(input: CreateMovieInput!): Movie!
-    updateMovie(id: ID!, input: UpdateMovieInput!): Movie
   }
 `

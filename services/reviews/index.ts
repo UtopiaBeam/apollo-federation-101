@@ -4,14 +4,14 @@ import { resolvers } from './resolvers'
 import { ApolloServer } from 'apollo-server'
 import { createContext } from '../../lib/context'
 
-export async function createMovieService(): Promise<void> {
+export async function createReviewService(): Promise<void> {
   const schema = buildSubgraphSchema({ typeDefs, resolvers })
   const server = new ApolloServer({
     schema,
     context: ({ req }) => createContext(req),
   })
 
-  const { url } = await server.listen(4001)
+  const { url } = await server.listen(4002)
 
-  console.log(`Movie service running at ${url}`)
+  console.log(`Review service running at ${url}`)
 }

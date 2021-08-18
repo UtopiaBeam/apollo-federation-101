@@ -1,23 +1,22 @@
-import { Resolvers } from 'generated/types'
-import { MovieRepository } from './repositories/movie.repo'
+import { Movie, Resolvers } from '../../generated/types'
+import { Context } from '../../lib/context'
 
-const movieRepo = new MovieRepository()
-
-export const resolvers: Resolvers = {
+export const resolvers: Resolvers<Context> = {
   Query: {
-    movies: (_parent, _args, _ctx) => {
-      return movieRepo.findMany()
+    movies: async (_parent, _args, ctx) => {
+      return ctx.prisma.movie.findMany() as unknown as Promise<Movie[]>
     },
-    movie: (_parent, { id }, _ctx) => {
-      return movieRepo.findById(id)
+    movie: (_parent, { id }, ctx) => {
+      return ctx.prisma.movie.findUnique({
+        where: { id },
+      }) as Promise<Movie | null>
     },
   },
   Mutation: {
-    createMovie: (_parent, { input }, _ctx) => {
-      return movieRepo.createMovie(input)
-    },
-    updateMovie: (_parent, { id, input }, _ctx) => {
-      return movieRepo.updateMovie(id, input)
+    createMovie: async (_parent, { input }, ctx) => {
+      return ctx.prisma.movie.create({
+        data: input,
+      }) as unknown as Promise<Movie>
     },
   },
 }
