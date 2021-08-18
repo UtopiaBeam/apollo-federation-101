@@ -12,4 +12,12 @@ export const resolvers: Resolvers = {
       return movieRepo.findById(id)
     },
   },
+  Mutation: {
+    createMovie: (_parent, { input }, _ctx) => {
+      return movieRepo.createMovie(input)
+    },
+    updateMovie: (_parent, { id, input }, _ctx) => {
+      return movieRepo.updateMovie(id, input)
+    },
+  },
 }
