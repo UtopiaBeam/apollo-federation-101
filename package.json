@@ -29,6 +29,7 @@
     "gateway:start": "ts-node gateway/index.ts",
     "pregateway:start": "yarn supergraph",
     "db:migrate": "dotenv -- yarn prisma migrate dev --preview-feature",
+    "db:migrate:reset": "dotenv -- yarn prisma migrate reset",
     "codegen:graphql": "graphql-codegen",
     "codegen:prisma": "prisma generate",
     "codegen": "yarn codegen:graphql && yarn codegen:prisma",
