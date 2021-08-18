@@ -1,0 +1,24 @@
+datasource db {
+  url      = env("DB_URL")
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+model Movie {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  Review      Review[]
+}
+
+model Review {
+  id      String  @id @default(uuid())
+  rating  Int
+  comment String?
+  movie   Movie   @relation(fields: [movieId], references: [id])
+  movieId String
+}
