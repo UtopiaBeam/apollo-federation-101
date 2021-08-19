@@ -19,4 +19,11 @@ export const resolvers: Resolvers<Context> = {
       }) as unknown as Promise<Movie>
     },
   },
+  Movie: {
+    __resolveReference: async (parent, ctx) => {
+      return ctx.prisma.movie.findUnique({
+        where: { id: parent.id },
+      }) as unknown as Promise<Movie>
+    },
+  },
 }

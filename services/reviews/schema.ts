@@ -5,6 +5,7 @@ export const typeDefs = gql`
     id: ID!
     rating: Int!
     comment: String
+    movie: Movie!
   }
 
   extend type Movie @key(fields: "id") {
