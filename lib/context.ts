@@ -5,7 +5,12 @@ export interface Context {
   prisma: PrismaClient
 }
 
-export function createContext(_req: Request) {
+export function createContext(req: Request) {
+  if (!req.headers.authorization) {
+    throw new Error('Unauthorized')
+  }
+  console.log(req.headers.authorization)
+
   return {
     prisma: new PrismaClient(),
   }
