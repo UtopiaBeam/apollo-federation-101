@@ -4,6 +4,9 @@ import { Context } from '../../lib/context'
 export const resolvers: Resolvers<Context> = {
   Query: {
     movies: async (_parent, _args, ctx) => {
+      if (!ctx.isAuthenticated) {
+        throw new Error('Unauthenticated')
+      }
       return ctx.prisma.movie.findMany() as unknown as Promise<Movie[]>
     },
     movie: (_parent, { id }, ctx) => {
