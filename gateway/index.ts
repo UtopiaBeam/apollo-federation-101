@@ -13,7 +13,12 @@ export async function createGateway(): Promise<void> {
     supergraphSdl,
     buildService: ({ url }) => new AuthenticationSource({ url }),
   })
-  const server = new ApolloServer({ gateway })
+  const server = new ApolloServer({
+    gateway,
+    context: ({ req }) => ({
+      authorization: req.headers.authorization,
+    }),
+  })
 
   const { url } = await server.listen(4000)
 
